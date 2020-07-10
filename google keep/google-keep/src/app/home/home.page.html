@@ -1,20 +1,43 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
+  <ion-toolbar color="light" padding>
+    <ion-title slot="">
+     My Google Keep
     </ion-title>
+    <ion-button rigth color="light" slot="primary"><ion-icon  name="power-outline" ></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="true" color ="dark"fullscreen>
+  <ion-header collapse="condense" translucent>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">My Google Keep</ion-title>
     </ion-toolbar>
   </ion-header>
+  
+  <ion-grid  fixed >
+<ion-row>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+<ion-col *ngFor="let res of respuesta.body" size="4"  >
+  
+<img *ngIf="res.type === img"  [src]="res.url"   />
+<ion-card *ngIf="res.type === 'nota'">
+<ion-card-header>
+<ion-text>imagenes</ion-text>
+
+</ion-card-header>
+<ion-card-content>
+<ion-card-title>{{res.title}}</ion-card-title>
+<ion-text>{{res.content}}</ion-text>
+</ion-card-content>
+</ion-card>
+</ion-col>
+
+
+
+</ion-row>
+    </ion-grid>
+      <ion-title color="light" *ngIf="respuesta.body.length === 0">no tienes notas  u/o imagenes</ion-title>
+  
+      <ion-fab-button  color="dark" position="float-right"><ion-icon name="add-circle"></ion-icon ></ion-fab-button>
+        <ion-fab-button  color="dark" position="float-end"><ion-icon name="mic"></ion-icon ></ion-fab-button>
+  </ion-content>

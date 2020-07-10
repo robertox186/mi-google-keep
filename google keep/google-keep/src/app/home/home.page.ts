@@ -6,7 +6,32 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+respuesta:any={
 
-  constructor() {}
+  body:[{
+type:"nota",
+title:"titulo",
+content:"este es el contenido"
+
+  },{
+    type:"nota",
+    title:"titulo",
+    content:"este es el contenido"
+    
+      },{
+        type:"nota",
+        title:"titulo",
+        content:"este es el contenido"
+        
+          },{
+            type:"nota",
+            title:"titulo",
+            content:"este es el contenido"
+            
+              }]
+}
+  constructor() {
+   
+  }
 
 }

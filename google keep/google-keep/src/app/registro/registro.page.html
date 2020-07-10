@@ -1,0 +1,77 @@
+<ion-header color="light">
+  <ion-toolbar color="light">
+    <ion-title>My Google Keep</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+<ion-card color="light">
+<ion-card-header color="light">
+  
+<ion-card-title >
+  <ion-text >
+    <h4>registrarse</h4>
+  </ion-text>
+  </ion-card-title>
+  
+  </ion-card-header>
+  <ion-card-content color="light">
+    <form [formGroup]="myForm" (ngSubmit)="registro()" novalidate>
+   <ion-list>
+    <ion-item color="light">
+      <ion-label position="floating" >Nombres y apellidos</ion-label>
+      <ion-input type="text" formControlName="names"  autocapitalize="off" autocomplete="off" autocorrect="off"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="myForm.get('names').errors && myForm.get('names').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('names').hasError('required')">este campo es requerido</p>
+    </ion-item>
+
+    <ion-item color="light">
+      <ion-label position="floating" >Email</ion-label>
+      <ion-input type="email" formControlName="email"  autocapitalize="off" autocomplete="off" autocorrect="off"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="myForm.get('email').errors && myForm.get('email').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('email').hasError('email')">el valor ingresado no corresponde a un correo electronico</p>
+    </ion-item>
+    <ion-item *ngIf="myForm.get('email').errors && myForm.get('email').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('email').hasError('required')">este campo es requerido</p>
+    </ion-item>
+
+    <ion-item color="light">
+      <ion-label position="floating" >password</ion-label>
+      <ion-input type="password" formControlName="password"   autocapitalize="off" autocomplete="off" autocorrect="off"></ion-input>
+    
+    </ion-item>
+    <ion-item *ngIf="myForm.get('password').errors && myForm.get('password').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('password').hasError('required')">este campo es requerido</p>
+    </ion-item>
+    <ion-item *ngIf="myForm.get('password').errors && myForm.get('password').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('password').hasError('pattern')">la contrasena debe contener al menos una mayuscula,un numero, un caracter especial y una longitud minima de 8 caracteres</p>
+    </ion-item>
+    
+    
+    <ion-item color="light">
+      <ion-label position="floating" >repeat password</ion-label>
+      <ion-input type="password" formControlName="pass2"   autocapitalize="off" autocomplete="off" autocorrect="off"></ion-input>
+    </ion-item>
+   <ion-item *ngIf="myForm.get('pass2').errors && myForm.get('pass2').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('pass2').hasError('required')">este campo es requerido</p>
+    </ion-item>
+    <ion-item *ngIf="myForm.get('pass2').errors && myForm.get('pass2').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('pass2').hasError('pattern')">la contrasena debe contener al menos una mayuscula,un numero, un caracter especial y una longitud minima de 8 caracteres </p>
+    </ion-item>
+    <ion-item color="light">
+      <ion-label position="floating" >edad</ion-label>
+      <ion-input type="number" formControlName="edad"  autocapitalize="off" autocomplete="off" autocorrect="off"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="myForm.get('edad').errors && myForm.get('edad').dirty">
+      <p color="danger" ion-text *ngIf="myForm.get('edad').hasError('required')">este campo es requerido</p>
+    </ion-item>
+  </ion-list>
+    <ion-button expand="full"type="submit" [disabled]="myForm.invalid" >registrarse</ion-button>
+</form>
+    <ion-button color="danger" expand="full" routerLink="/">ya tienes cuenta?</ion-button>
+  </ion-card-content>
+  </ion-card>
+  </ion-content>
+  
