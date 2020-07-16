@@ -26,7 +26,7 @@ export class RegistroPage implements OnInit {
     public fb: FormBuilder,private user:AuthService, private routrer:Router,private archivo:ArchivosService) { }
 registro(){
  
-    
+    if(this.pass(this.myForm.value.password,this.myForm.value.pass2)){
 
       this.user.registro(JSON.stringify(this.myForm.value)).then(
         (res) => { 
@@ -46,6 +46,9 @@ this.routrer.navigate(['/home']);
         }
       );
     
+    }else{
+      alert("las contrasenas no coinciden")
+    }
 
 
 }
