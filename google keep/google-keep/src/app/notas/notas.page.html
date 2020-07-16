@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> notas</ion-title>
+    <ion-buttons slot="start"  (click)="save()" >
+      
+      <ion-icon name="arrow-back"  ></ion-icon>
+      
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+<ion-input type="text" placeholder="titulo"  [(ngModel)]="title" color="light"></ion-input>
+<ion-textarea placeholder="cuerpo de la nota" [(ngModel)]="content" color="light"></ion-textarea>
+
+
+</ion-content>

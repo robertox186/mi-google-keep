@@ -17,7 +17,7 @@ let options = {
 
 }
 console.log("llegue")
-var url="http://localhost:3000/login";
+var url="https://my-google-keep.herokuapp.com/login";
 return new Promise(resolve => {
 this.http.post(url,info,options)
    .subscribe(data => {
@@ -36,7 +36,7 @@ registro(info){
 
 }
 console.log("llegue")
-var url="http://localhost:3000/registro";
+var url="https://my-google-keep.herokuapp.com/registro";
 return new Promise(resolve => {
   this.http.post(url,info,options)
      .subscribe(data => {

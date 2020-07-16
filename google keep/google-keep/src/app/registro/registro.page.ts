@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators  } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import {AuthService} from '../auth.service';
+import  {ArchivosService} from '../archivos.service'
 import {Router} from '@angular/router'
 @Component({
   selector: 'app-registro',
@@ -22,7 +23,7 @@ export class RegistroPage implements OnInit {
   });
   respuesta:any;
   constructor(public navCtrl: NavController,
-    public fb: FormBuilder,private user:AuthService, private routrer:Router) { }
+    public fb: FormBuilder,private user:AuthService, private routrer:Router,private archivo:ArchivosService) { }
 registro(){
  
     
@@ -33,6 +34,10 @@ registro(){
           console.log(this.respuesta);
           if(this.respuesta.status==200){
 localStorage.setItem('user',this.respuesta.body._id);
+localStorage.setItem('informacion', JSON.stringify([]));
+
+
+
 this.routrer.navigate(['/home']);
           }
         },

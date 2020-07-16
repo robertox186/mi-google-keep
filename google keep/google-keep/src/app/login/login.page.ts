@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { FormGroup, FormBuilder,Validators  } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import{AuthService} from  '../auth.service'
+import{AuthService} from  '../auth.service';
+import {ArchivosService} from '../archivos.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -18,27 +19,25 @@ export class LoginPage implements OnInit {
   });
 recuerdame:boolean=false;
 respuesta:any;
-  constructor(private router:Router, public fb: FormBuilder,public navCtrl: NavController,private auth:AuthService) { }
+  constructor(  private info:ArchivosService,private router:Router, public fb: FormBuilder,public navCtrl: NavController,private auth:AuthService) { }
   
  iniciar(){
 
 
 this.auth.login(JSON.stringify(this.elForm.value)).then(res=>{
 this.respuesta=res;
-console.log("res: "+this.respuesta.body);
+console.log("res: "+this.respuesta);
 if(this.respuesta.status==200){
-  localStorage.setItem('user',this.respuesta.body._id);
-  alert(localStorage.getItem('user'));
-  this.router.navigate(['/home']);
-}else{
+  localStorage.setItem('user',this.respuesta.body.email);
+
+  localStorage.setItem('informacion',this.respuesta.body.informacion); 
+  
+   this.router.navigate(['/home']);
+  }else{
   alert("usuario u/o contrasenia incorrecto");
 }
-
-
 })
- 
-
-}
+}// fin de iniciar
 
   ngOnInit() {
   }

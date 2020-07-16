@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"  (click)="save()" >
+      
+      <ion-icon name="arrow-back"  ></ion-icon>
+      
+    </ion-buttons>
+    <ion-title>My Google Keep</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+ <ion-title center>MEMORAMDUM</ion-title>
+<ion-item  >
+  <ion-label position="floating"  >De:</ion-label><ion-input type="text" [(ngModel)]="origen"></ion-input>
+</ion-item>
+
+
+
+<ion-item>
+  <ion-label position="floating" >Para:</ion-label><ion-input type="text" [(ngModel)]="destinatario"></ion-input>
+ </ion-item>
+ 
+
+
+ <ion-item >
+  <ion-label position="floating" >Asunto:</ion-label><ion-input type="text"[(ngModel)]="asunto"></ion-input>
+ </ion-item>
+ 
+
+
+ <ion-item >
+  <ion-label position="floating">Lugar:</ion-label><ion-input type="text"[(ngModel)]="lugar"></ion-input>
+ </ion-item>
+ 
+ <ion-item >
+  <ion-label position="floating">Fecha:</ion-label><ion-input type="date" [(ngModel)]="fecha"></ion-input>
+ </ion-item>
+ 
+
+
+ <ion-item >
+  <textarea center placeholder="cuerpo" [(ngModel)]="cuerpo"></textarea>
+ </ion-item>
+ 
+
+
+ <ion-item >
+  <ion-label position="floating">Despedida:</ion-label><ion-input type="text" [(ngModel)]="despedida"></ion-input>
+ </ion-item>
+ 
+</ion-list>
+</ion-content>

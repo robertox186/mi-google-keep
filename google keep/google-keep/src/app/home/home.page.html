@@ -3,41 +3,115 @@
     <ion-title slot="">
      My Google Keep
     </ion-title>
-    <ion-button rigth color="light" slot="primary"><ion-icon  name="power-outline" ></ion-icon></ion-button>
+    <ion-button rigth color="danger" (click)="cerrarSession()"  slot="primary"><ion-icon  name="power-outline" ></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" color ="dark"fullscreen>
   <ion-header collapse="condense" translucent>
-    <ion-toolbar>
+    <ion-toolbar>fh
       <ion-title size="large">My Google Keep</ion-title>
     </ion-toolbar>
   </ion-header>
   
   <ion-grid  fixed >
 <ion-row>
+  <ion-col *ngFor="let res of info; let i=index" size="12"  >
 
-<ion-col *ngFor="let res of respuesta.body" size="4"  >
+    <ion-card *ngIf="res.type === 'memo'&& res.pincho===true" >
+      <ion-card-header color="light">
+        <ion-title>MEMORANDUN</ion-title>
+        <ion-button color="danger" (click)="remove(i)"><ion-icon name="close"  ></ion-icon></ion-button>
+        <ion-button color="warning" *ngIf="res.pincho===true " (click)="pincho(i)"><ion-icon name="leaf"  ></ion-icon></ion-button>
+<ion-button   
+*ngIf="res.pincho===false" color="dark" (click)="pincho(i)"><ion-icon name="leaf"  ></ion-icon></ion-button>
+
+      </ion-card-header>
+      <ion-card-content (click)="ModalMemo(i)"  >
+        <ion-label color="dark">de:</ion-label><ion-text>{{res.origen}}</ion-text><br>
+      <ion-label color="dark">Para:</ion-label><ion-text>{{res.destinatario}}</ion-text><br>
+      <ion-label color="dark">Fecha:</ion-label><ion-text>{{res.fecha}}</ion-text><br>
+      <ion-label color="dark">Lugar:</ion-label><ion-text>{{res.lugar}}</ion-text><br>
+      <ion-text>{{res.cuerpo}}</ion-text><br>
+      <ion-label color="dark">Despedida:</ion-label><ion-text>{{res.Despedida}}</ion-text>
+      
+      </ion-card-content>
+      
+      </ion-card>
+      
+      
+        
+      
+        <ion-card *ngIf="res.type === 'nota' && res.pincho===true" >
+      
+      
+      <ion-card-header color="light">
+      
+      <ion-card-title>NOTA</ion-card-title>
+      <ion-button color="danger" (click)="remove(i)"><ion-icon name="close"  ></ion-icon></ion-button>
+      <ion-button color="warning" *ngIf="res.pincho===true"  (click)="pincho(i)"><ion-icon name="leaf"  ></ion-icon></ion-button>
+<ion-button   
+*ngIf="res.pincho===false" color="dark" (click)="pincho(i)"><ion-icon name="leaf"  ></ion-icon></ion-button>
+ <br>
+      </ion-card-header>
+      <ion-card-content (click)="ModalNota(i)"  color="light">
+      <ion-label color="dark">title:</ion-label><ion-text>{{res.title}}</ion-text><br>
+      <ion-text>{{res.content}}</ion-text>
+      </ion-card-content>
+      </ion-card>
+
+  </ion-col>
+<ion-col *ngFor="let res of info; let i=index" size="12"  >
+ 
+
+<ion-card *ngIf="res.type === 'memo'&& res.pincho===false" >
+<ion-card-header color="light">
+  <ion-title>MEMORANDUN</ion-title>
+  <ion-button color="danger" (click)="remove(i)"><ion-icon name="close"  ></ion-icon></ion-button>
+  <ion-button color="warning" *ngIf="res.pincho===true"  (click)="pincho(i)"><ion-icon name="leaf"  ></ion-icon></ion-button>
+  <ion-button   
+  *ngIf="res.pincho===false" color="dark" (click)="pincho(i)"><ion-icon name="leaf"  ></ion-icon></ion-button>
   
-<img *ngIf="res.type === img"  [src]="res.url"   />
-<ion-card *ngIf="res.type === 'nota'">
-<ion-card-header>
-<ion-text>imagenes</ion-text>
-
 </ion-card-header>
-<ion-card-content>
-<ion-card-title>{{res.title}}</ion-card-title>
+<ion-card-content (click)="ModalMemo(i)"  color="light">
+  <ion-label color="dark">de:</ion-label><ion-text>{{res.origen}}</ion-text><br>
+<ion-label color="dark">Para:</ion-label><ion-text>{{res.destinatario}}</ion-text><br>
+<ion-label color="dark">Fecha:</ion-label><ion-text>{{res.fecha}}</ion-text><br>
+<ion-label color="dark">Lugar:</ion-label><ion-text>{{res.lugar}}</ion-text><br>
+<ion-text>{{res.cuerpo}}</ion-text><br>
+<ion-label color="dark">Despedida:</ion-label><ion-text>{{res.Despedida}}</ion-text>
+
+</ion-card-content>
+
+</ion-card>
+
+
+  
+
+  <ion-card *ngIf="res.type === 'nota' && res.pincho===false" >
+
+
+<ion-card-header color="light">
+
+<ion-card-title>NOTA</ion-card-title>
+<ion-button color="danger" (click)="remove(i)"><ion-icon name="close"  ></ion-icon></ion-button>
+<ion-button color="warning" *ngIf="res.pincho===true"  (click)="pincho(i)"><ion-icon name="leaf"  ></ion-icon></ion-button>
+<ion-button   
+*ngIf="res.pincho===false" color="dark" (click)="pincho(i)"><ion-icon name="leaf"  ></ion-icon></ion-button>
+<br>
+</ion-card-header>
+<ion-card-content (click)="ModalNota(i)" color="light">
+<ion-label color="dark">title:</ion-label><ion-text>{{res.title}}</ion-text><br>
 <ion-text>{{res.content}}</ion-text>
 </ion-card-content>
 </ion-card>
-</ion-col>
 
+</ion-col>
 
 
 </ion-row>
     </ion-grid>
-      <ion-title color="light" *ngIf="respuesta.body.length === 0">no tienes notas  u/o imagenes</ion-title>
+      
   
-      <ion-fab-button  color="dark" position="float-right"><ion-icon name="add-circle"></ion-icon ></ion-fab-button>
-        <ion-fab-button  color="dark" position="float-end"><ion-icon name="mic"></ion-icon ></ion-fab-button>
+      <ion-fab-button position="floating" color="dark"  class="nuevo"(click)="presentPopover()"><ion-icon name="add-circle" class="icono" ></ion-icon ></ion-fab-button>
   </ion-content>
